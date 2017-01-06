@@ -1,0 +1,15 @@
+!.gitkeep
+.git
+
+target
+
+.DS_Store
+*~
+
+# eclipse
+.classpath
+.settings
+.project
+
+# idea
+*.iml
