@@ -2,6 +2,24 @@
 
 Backports of [Hive 2.1.1 UDF functions](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) to Hive 0.13.0
 
+## Usage
+
+```sh
+-- build jars
+$ bin/build.sh
+
+-- run Hive cli session
+$ hive
+```
+
+```sql
+-- deploy jar
+add jar target/hive-udf-backports-x.y.z.jar;
+
+-- load functions
+source resources/define-functions.hive;
+```
+
 ## Maven repository
 
 ```xml
