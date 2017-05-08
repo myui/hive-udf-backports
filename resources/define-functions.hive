@@ -1,0 +1,39 @@
+DROP TEMPORARY FUNCTION IF EXISTS aes_decrypt;
+CREATE TEMPORARY FUNCTION aes_decrypt AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFAesDecrypt';
+
+DROP TEMPORARY FUNCTION IF EXISTS aes_encrypt;
+CREATE TEMPORARY FUNCTION aes_encrypt AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFAesEncrypt';
+
+DROP TEMPORARY FUNCTION IF EXISTS greatest;
+CREATE TEMPORARY FUNCTION greatest AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFGreatest';
+
+DROP TEMPORARY FUNCTION IF EXISTS least;
+CREATE TEMPORARY FUNCTION least AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFLeast';
+
+DROP TEMPORARY FUNCTION IF EXISTS levenshtein;
+CREATE TEMPORARY FUNCTION levenshtein AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFLevenshtein';
+
+DROP TEMPORARY FUNCTION IF EXISTS mask;
+CREATE TEMPORARY FUNCTION mask AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMask';
+
+DROP TEMPORARY FUNCTION IF EXISTS mask_first_n;
+CREATE TEMPORARY FUNCTION mask_first_n AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskFirstN';
+
+DROP TEMPORARY FUNCTION IF EXISTS mask_hash;
+CREATE TEMPORARY FUNCTION mask_hash AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskHash';
+
+DROP TEMPORARY FUNCTION IF EXISTS mask_last_n;
+CREATE TEMPORARY FUNCTION mask_last_n AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskLastN';
+
+DROP TEMPORARY FUNCTION IF EXISTS mask_show_first_n;
+CREATE TEMPORARY FUNCTION mask_show_first_n AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskShowFirstN';
+
+DROP TEMPORARY FUNCTION IF EXISTS mask_show_last_n;
+CREATE TEMPORARY FUNCTION mask_show_last_n AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskShowLastN';
+
+DROP TEMPORARY FUNCTION IF EXISTS nullif;
+CREATE TEMPORARY FUNCTION nullif AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFNullif';
+
+DROP TEMPORARY FUNCTION IF EXISTS soundex;
+CREATE TEMPORARY FUNCTION soundex AS 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFSoundex';
+
