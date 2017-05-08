@@ -216,6 +216,7 @@ class MaskTransformer extends AbstractTransformer {
     return ret;
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   Date transform(final Date value) {
     int year  = maskedYearValue  == UNMASKED_VAL ? value.getYear()  : maskedYearValue;
