@@ -18,12 +18,16 @@
 package org.apache.hadoop.hive.ql.udf;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
 import org.apache.hadoop.hive.ql.udf.generic.GenericUDF.DeferredObject;
 import org.apache.hadoop.hive.serde2.io.ByteWritable;
+import org.apache.hadoop.hive.serde2.io.DateWritable;
 import org.apache.hadoop.hive.serde2.io.DoubleWritable;
 import org.apache.hadoop.hive.serde2.io.ShortWritable;
 import org.apache.hadoop.hive.serde2.io.TimestampWritable;
@@ -36,6 +40,7 @@ import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector.Pr
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorUtils.PrimitiveGrouping;
+import org.apache.hadoop.io.BooleanWritable;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -46,8 +51,21 @@ public final class BackportUtils {
     private static final String[] ORDINAL_SUFFIXES = new String[] {"th", "st", "nd", "rd", "th",
             "th", "th", "th", "th", "th"};
 
-
     private BackportUtils() {}
+
+    // -----------------------------------------------------------------------------
+    // ported form org.apache.hive.common.util.DateUtils
+
+    private static final ThreadLocal<SimpleDateFormat> dateFormatLocal = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd");
+        }
+    };
+
+    public static SimpleDateFormat getDateFormat() {
+        return dateFormatLocal.get();
+    }
 
     // -----------------------------------------------------------------------------
     // ported form GenericUDF()
@@ -365,4 +383,55 @@ public final class BackportUtils {
         Object constValue = ((ConstantObjectInspector) arguments[i]).getWritableConstantValue();
         return (BytesWritable) constValue;
     }
+
+    public static Date getDateValue(DeferredObject[] arguments, int i,
+            PrimitiveCategory[] inputTypes, Converter[] converters) throws HiveException {
+        Object obj;
+        if ((obj = arguments[i].get()) == null) {
+            return null;
+        }
+
+        Date date;
+        switch (inputTypes[i]) {
+            case STRING:
+            case VARCHAR:
+            case CHAR:
+                String dateStr = converters[i].convert(obj).toString();
+                try {
+                    date = getDateFormat().parse(dateStr);
+                } catch (ParseException e) {
+                    return null;
+                }
+                break;
+            case TIMESTAMP:
+            case DATE:
+                //case TIMESTAMPTZ:
+                Object writableValue = converters[i].convert(obj);
+                date = ((DateWritable) writableValue).get();
+                break;
+            default:
+                throw new UDFArgumentTypeException(0,
+                    "_FUNC_ only takes STRING_GROUP and DATE_GROUP types, got " + inputTypes[i]);
+        }
+        return date;
+    }
+
+    public static Boolean getConstantBooleanValue(ObjectInspector[] arguments, int i)
+            throws UDFArgumentTypeException {
+        Object constValue = ((ConstantObjectInspector) arguments[i]).getWritableConstantValue();
+        if (constValue == null) {
+            return false;
+        }
+        if (constValue instanceof BooleanWritable) {
+            return ((BooleanWritable) constValue).get();
+        } else {
+            throw new UDFArgumentTypeException(i, "_FUNC_ only takes BOOLEAN types as "
+                    + getArgOrder(i) + " argument, got " + constValue.getClass());
+        }
+    }
+
+    public static Timestamp getCurrentTimestamp() {
+        return new Timestamp(System.currentTimeMillis());
+    }
+
 }

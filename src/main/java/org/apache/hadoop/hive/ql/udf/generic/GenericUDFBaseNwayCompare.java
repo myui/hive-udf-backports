@@ -82,7 +82,6 @@ public abstract class GenericUDFBaseNwayCompare extends GenericUDF {
 
   protected abstract String getFuncName();
 
-@SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   public Object evaluate(GenericUDF.DeferredObject[] arguments) throws HiveException {
     Object maxV = null;
