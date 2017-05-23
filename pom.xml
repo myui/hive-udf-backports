@@ -4,7 +4,7 @@
 
 	<groupId>io.github.myui</groupId>
 	<artifactId>hive-udf-backports</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>Backports of Hive UDFs</name>
     <url>https://github.com/myui/hive-udf-backports</url>
     <inceptionYear>2016</inceptionYear>

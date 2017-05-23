@@ -1,0 +1,55 @@
+-- since v1.1.0
+create temporary function greatest as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFGreatest';
+create temporary function least as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFLeast';
+create temporary function add_months as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFAddMonths';
+create temporary function last_day as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFLastDay';
+create temporary function initcap as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFInitCap';
+
+-- since v1.2.0
+create temporary function factorial as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFFactorial';
+create temporary function cbrt as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFCbrt';
+create temporary function shiftleft as 'org.apache.hadoop.hive.ql.udf.UDFOPBitShiftLeft';
+create temporary function shiftright as 'org.apache.hadoop.hive.ql.udf.UDFOPBitShiftRight';
+create temporary function shiftrightunsigned as 'org.apache.hadoop.hive.ql.udf.UDFOPBitShiftRightUnsigned';
+create temporary function current_date as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFCurrentDate';
+create temporary function current_timestamp as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFCurrentTimestamp';
+create temporary function next_day as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFNextDay';
+create temporary function trunc as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFTrunc';
+create temporary function months_between as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMonthsBetween';
+create temporary function date_format as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFDateFormat';
+create temporary function levenshtein as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFLevenshtein';
+create temporary function soundex as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFSoundex';
+
+-- since v1.3.0
+create temporary function quarter as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFQuarter';
+create temporary function chr as 'org.apache.hadoop.hive.ql.udf.UDFChr';
+create temporary function replace as 'org.apache.hadoop.hive.ql.udf.UDFReplace';
+create temporary function substring_index as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFSubstringIndex';
+create temporary function md5 as 'org.apache.hadoop.hive.ql.udf.UDFMd5';
+create temporary function sha1 as 'org.apache.hadoop.hive.ql.udf.UDFSha1';
+create temporary function crc32 as 'org.apache.hadoop.hive.ql.udf.UDFCrc32';
+create temporary function sha2 as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFSha2';
+create temporary function aes_encrypt as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFAesEncrypt';
+create temporary function aes_decrypt as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFAesDecrypt';
+
+-- since v2.1.0
+create temporary function mask as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMask';
+create temporary function mask_first_n as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskFirstN';
+create temporary function mask_last_n as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskLastN';
+create temporary function mask_show_first_n as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskShowFirstN';
+create temporary function mask_show_last_n as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskShowLastN';
+create temporary function mask_hash as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFMaskHash';
+
+-- since v2.2.0
+create temporary function nullif as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFNullif';
+create temporary function character_length as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFCharacterLength';
+create temporary function char_length as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDFCharacterLength';
+create temporary function regr_avgx as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrAvgX';
+create temporary function regr_avgy as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrAvgY';
+create temporary function regr_count as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrCount';
+create temporary function regr_intercept as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrIntercept';
+create temporary function regr_r2 as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrR2';
+create temporary function regr_slope as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrSlope';
+create temporary function regr_sxx as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrSXX';
+create temporary function regr_sxy as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrSXY';
+create temporary function regr_syy as 'org.apache.hadoop.hive.ql.udf.generic.GenericUDAFBinarySetFunctions.RegrSYY';
